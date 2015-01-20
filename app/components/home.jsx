@@ -1,9 +1,13 @@
 var React = require('react');
+var Game = require('./game.jsx');
 
 var Home = React.createClass({
   render: function() {
     return (
-      <p>Hello, world!</p>
+      <div>
+        <h1>Welcome to 2048!</h1>
+        <Game/>
+      </div>
     );
   }
 });

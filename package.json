@@ -18,6 +18,7 @@
     "reactify": "^0.17.1",
     "rimraf": "^2.2.8",
     "serve-static": "^1.8.0",
+    "underscore": "^1.7.0",
     "vinyl-source-stream": "^1.0.0"
   }
 }
