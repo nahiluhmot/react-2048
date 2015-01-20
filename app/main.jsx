@@ -1,6 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-var Routes = require('./components/routes.jsx')
+var Routes = require('./routes.jsx')
 
 window.onload = function() {
   var documentRoot = document.querySelector('#app');
