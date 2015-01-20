@@ -13,11 +13,11 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('js', function() {
-    browserify({ entries: './app/main.js' })
-      .transform('reactify')
-      .bundle()
-      .pipe(source('deps.min.js'))
-      .pipe(gulp.dest('build/js'));
+  browserify({ entries: './app/main.js' })
+    .transform('reactify')
+    .bundle()
+    .pipe(source('deps.min.js'))
+    .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('html', function() {
@@ -28,7 +28,7 @@ gulp.task('html', function() {
 gulp.task('build', ['js', 'html']);
 
 gulp.task('serve', ['build'], function() {
-  var port = process.env.PORT || 3000;
+  var port = parseInt(process.env.PORT) || 3000;
   var serve = serveStatic('build/', { index: ['index.html'] })
   var server = http.createServer(function(req, res){
     var done = finalhandler(req, res)
