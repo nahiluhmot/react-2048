@@ -1,4 +1,12 @@
-// Center an element in the screen.
+* {
+  font-family: Helvetica, Verdana, sans-serif;
+}
+
+.tile {
+  display: inline;
+  font-size: 40px;
+}
+
 .center {
   margin-left: auto;
   margin-right: auto;

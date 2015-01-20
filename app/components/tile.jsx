@@ -14,7 +14,7 @@ var Tile = React.createClass({
 
   render: function() {
     return (
-      <div className={this.cssClassName()}>
+      <div className={"tile" + " " + this.cssClassName()}>
         {this.props.value}
       </div>
     );

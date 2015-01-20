@@ -14,7 +14,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('js', function() {
-  browserify({ entries: './app/main.js' })
+  browserify({ entries: './app/main.jsx' })
     .transform('reactify')
     .bundle()
     .pipe(source('deps.min.js'))
@@ -38,6 +38,7 @@ gulp.task('serve', ['build'], function() {
   var port = parseInt(process.env.PORT) || 3000;
   var serve = serveStatic('./build/', { index: ['index.html'] })
   var server = http.createServer(function(req, res){
+    console.log(req.url);
     var done = finalhandler(req, res)
     serve(req, res, done)
   })
