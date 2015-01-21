@@ -4,17 +4,18 @@ var browserify = require('browserify');
 var finalhandler = require('finalhandler');
 var gulp = require('gulp');
 var http = require('http');
+var jasmine = require('gulp-jasmine');
 var rimraf = require('rimraf');
 var serveStatic = require('serve-static');
 var source = require('vinyl-source-stream');
 var sass = require('gulp-sass');
 
 gulp.task('clean', function(cb) {
-  rimraf('./build/', cb);
+  return rimraf('./build/', cb);
 });
 
 gulp.task('js', function() {
-  browserify({ entries: './app/main.jsx' })
+  return browserify({ entries: './app/main.jsx' })
     .transform('reactify')
     .bundle()
     .pipe(source('deps.min.js'))
@@ -22,17 +23,22 @@ gulp.task('js', function() {
 });
 
 gulp.task('scss', function() {
-  gulp.src('./style/**/*.scss')
+  return gulp.src('./style/**/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('./build/css'));
 });
 
 gulp.task('html', function() {
-  gulp.src('./index.html')
+  return gulp.src('./index.html')
     .pipe(gulp.dest('./build/'));
 });
 
 gulp.task('build', ['js', 'scss', 'html']);
+
+gulp.task('spec', function() {
+  return gulp.src('spec/**/*.js')
+    .pipe(jasmine());
+});
 
 gulp.task('serve', ['build'], function() {
   var port = parseInt(process.env.PORT) || 3000;
@@ -52,4 +58,4 @@ gulp.task('watch', function() {
   gulp.watch('./style/**/*.scss', ['scss']);
 });
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'spec']);
