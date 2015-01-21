@@ -1,4 +1,4 @@
-var Board = require('../app/board.js');
+var Board = rootRequire('models/board.js');
 
 describe('Board', function() {
   var elems = [
@@ -7,7 +7,7 @@ describe('Board', function() {
     [ 8,  9, 10, 11],
     [12, 13, 14, 15],
   ];
-  var subject = new Board(0, elems);
+  var subject = new Board(elems);
 
   describe('#rows', function() {
     it('returns an Array of the rows', function() {

@@ -1,13 +1,12 @@
 var React = require('react');
 var Router = require('react-router');
 
-var App = require('./app.jsx');
-var Home = require('./home.jsx');
+var Views = require('./views.js');
 
 var Routes = (
-  <Router.Route name="app" path="/" handler={App}>
-    <Router.DefaultRoute handler={Home}/>
-    <Router.NotFoundRoute handler={Home}/>
+  <Router.Route name="app" path="/" handler={Views.App}>
+    <Router.DefaultRoute handler={Views.Home}/>
+    <Router.NotFoundRoute handler={Views.Home}/>
   </Router.Route>
 );
 

@@ -1,6 +1,11 @@
 var React = require('react');
 var Router = require('react-router');
-var Routes = require('./routes.jsx')
+
+var App = {};
+
+App.Routes = require('./routes.jsx');
+App.Views = require('./views.js');
+App.Models = require('./Models.js');
 
 window.onload = function() {
   var documentRoot = document.querySelector('#app');
@@ -9,3 +14,5 @@ window.onload = function() {
     React.render(<Handler params={state.params}/>, documentRoot);
   });
 };
+
+module.exports = App;
