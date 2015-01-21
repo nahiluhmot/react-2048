@@ -5,7 +5,6 @@ var App = {};
 
 App.Routes = require('./routes.jsx');
 App.Views = require('./views.js');
-App.Models = require('./Models.js');
 
 window.onload = function() {
   var documentRoot = document.querySelector('#app');
