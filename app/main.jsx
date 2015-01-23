@@ -9,7 +9,7 @@ App.Views = require('./views.js');
 window.onload = function() {
   var documentRoot = document.querySelector('#app');
 
-  Router.run(Routes, function(Handler, state) {
+  Router.run(App.Routes, function(Handler, state) {
     React.render(<Handler params={state.params}/>, documentRoot);
   });
 };
