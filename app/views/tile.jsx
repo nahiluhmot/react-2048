@@ -12,10 +12,16 @@ var Tile = React.createClass({
     return "tile-" + this.props.value;
   },
 
+  showValue: function() {
+    if (this.props.value !== 0) {
+      return this.props.value;
+    }
+  },
+
   render: function() {
     return (
       <div className={"tile" + " " + this.cssClassName()}>
-        {this.props.value}
+        {this.showValue()}
       </div>
     );
   }

@@ -17,14 +17,16 @@ var Game = React.createClass({
         [0, 0, 0 ,0],
         [0, 0, 0 ,0],
         [0, 0, 0 ,0],
-      ]
+      ],
+      gameOver: false
     };
   },
 
   addRandomElement: function(board) {
     var empties = GameService.emptySpaces(board);
     var coord = _.shuffle(empties)[0];
-    return GameService.updatePosition(coord[0], coord[1], 2, board);
+    var elem = (Math.random() > 0.75) ? 4 : 2;
+    return GameService.updatePosition(coord[0], coord[1], elem, board);
   },
 
   componentWillMount: function() {
@@ -44,6 +46,7 @@ var Game = React.createClass({
   handleKey: function(event) {
     var direction;
     var newBoard = this.state.board;
+    var newScore = this.state.score;
 
     if (event.keyCode === 37) {
       direction = 'left';
@@ -56,12 +59,15 @@ var Game = React.createClass({
     }
 
     if (direction && GameService.canBoardMove(direction, newBoard)) {
-      newBoard = GameService.moveBoard(direction, newBoard);
+      result =  GameService.moveBoard(direction, newBoard);
+      newBoard = result.board;
       newBoard = this.addRandomElement(newBoard);
+      newScore = result.score + newScore;
     }
 
     this.setState({
       board: newBoard,
+      score: newScore,
       gameOver: GameService.isGameOver(newBoard)
     });
   },

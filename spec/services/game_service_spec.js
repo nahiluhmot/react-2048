@@ -242,7 +242,12 @@ describe('GameService', function() {
         [16, 8, 4,  2],
         [ 2, 4, 8, 16]
       ];
-      var expected = args.slice();
+      var expected = _.map(args.slice(), function(array) {
+        return {
+          array: array,
+          score: 0
+        };
+      });
 
       it('returns the original Array', function() {
         _.each(_.zip(args, expected), function(argAndExpected) {
@@ -262,10 +267,10 @@ describe('GameService', function() {
       ];
 
       var expected = [
-        [ 0,  0, 0,  2],
-        [ 0,  0, 2,  8],
-        [ 0, 16, 8,  8],
-        [ 0,  0, 4, 16]
+        { array: [ 0,  0, 0,  2], score: 0 },
+        { array: [ 0,  0, 2,  8], score: 8 },
+        { array: [ 0, 16, 8,  8], score: 8 },
+        { array: [ 0,  0, 4, 16], score: 4 }
       ];
 
       it('shifts the Array down', function() {
@@ -571,24 +576,33 @@ describe('GameService', function() {
         ];
 
         var results = [
-          [
-            [0,  2, 2, 4],
-            [0,  4, 8, 2],
-            [0, 16, 0, 4],
-            [0,  0, 0, 0]
-          ],
-          [
-            [0, 0, 0, 2],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
-          ],
-          [
-            [8, 8, 2, 8],
-            [2, 2, 8, 2],
-            [8, 8, 2, 8],
-            [0, 2, 8, 2]
-          ],
+          {
+            board: [
+              [0,  2, 2, 4],
+              [0,  4, 8, 2],
+              [0, 16, 0, 4],
+              [0,  0, 0, 0]
+            ],
+            score: 24
+          },
+          {
+            board: [
+              [0, 0, 0, 2],
+              [0, 0, 0, 0],
+              [0, 0, 0, 0],
+              [0, 0, 0, 0]
+            ],
+            score: 0
+          },
+          {
+            board: [
+              [8, 8, 2, 8],
+              [2, 2, 8, 2],
+              [8, 8, 2, 8],
+              [0, 2, 8, 2]
+            ],
+            score: 8
+          }
         ];
 
         it('moves the board up', function() {
@@ -624,7 +638,10 @@ describe('GameService', function() {
 
         it('does not move the board up', function() {
           _.each(boards, function(board) {
-            expect(subject.moveBoard('up', board)).toEqual(board);
+            expect(subject.moveBoard('up', board)).toEqual({
+              board: board,
+              score: 0
+            });
           });
         });
       });
@@ -654,24 +671,33 @@ describe('GameService', function() {
         ];
 
         var results = [
-          [
-            [0,  0, 0, 0],
-            [0,  2, 0, 4],
-            [0,  4, 2, 2],
-            [0, 16, 8, 4]
-          ],
-          [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 2]
-          ],
-          [
-            [0, 8, 2, 8],
-            [8, 2, 8, 2],
-            [2, 8, 2, 8],
-            [8, 2, 8, 2]
-          ],
+          {
+            board: [
+                [0,  0, 0, 0],
+                [0,  2, 0, 4],
+                [0,  4, 2, 2],
+                [0, 16, 8, 4]
+              ],
+            score: 24
+          },
+          {
+            board: [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 2]
+              ],
+            score: 0
+            },
+          {
+            board: [
+                [0, 8, 2, 8],
+                [8, 2, 8, 2],
+                [2, 8, 2, 8],
+                [8, 2, 8, 2]
+              ],
+            score: 8
+          },
         ];
 
         it('moves the board down', function() {
@@ -707,7 +733,10 @@ describe('GameService', function() {
 
         it('does not move the board down', function() {
           _.each(boards, function(board) {
-            expect(subject.moveBoard('down', board)).toEqual(board);
+            expect(subject.moveBoard('down', board)).toEqual({
+              board: board,
+              score: 0
+            });
           });
         });
       });
@@ -737,24 +766,33 @@ describe('GameService', function() {
         ];
 
         var results = [
-          [
-            [4, 4, 0, 0],
-            [8, 2, 0, 0],
-            [8, 8, 0, 0],
-            [8, 0, 0, 0]
-          ],
-          [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [2, 0, 0, 0]
-          ],
-          [
-            [8, 2, 8, 0],
-            [8, 2, 8, 2],
-            [2, 8, 2, 8],
-            [8, 2, 8, 2]
-          ],
+          {
+            board: [
+                [4, 4, 0, 0],
+                [8, 2, 0, 0],
+                [8, 8, 0, 0],
+                [8, 0, 0, 0]
+              ],
+            score: 20
+          },
+          {
+            board: [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [2, 0, 0, 0]
+              ],
+            score: 0
+          },
+          {
+            board: [
+                [8, 2, 8, 0],
+                [8, 2, 8, 2],
+                [2, 8, 2, 8],
+                [8, 2, 8, 2]
+              ],
+            score: 8
+          },
         ];
 
         it('moves the board left', function() {
@@ -790,7 +828,10 @@ describe('GameService', function() {
 
         it('does not move the board left', function() {
           _.each(boards, function(board) {
-            expect(subject.moveBoard('left', board)).toEqual(board);
+            expect(subject.moveBoard('left', board)).toEqual({
+              board: board,
+              score: 0
+            });
           });
         });
       });
@@ -820,24 +861,33 @@ describe('GameService', function() {
         ];
 
         var results = [
-          [
-            [0, 0, 4, 4],
-            [0, 0, 8, 2],
-            [0, 0, 8, 8],
-            [0, 0, 0, 8]
-          ],
-          [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 2]
-          ],
-          [
-            [0, 2, 8, 2],
-            [8, 2, 8, 2],
-            [2, 8, 2, 8],
-            [8, 2, 8, 2]
-          ],
+          {
+            board: [
+                [0, 0, 4, 4],
+                [0, 0, 8, 2],
+                [0, 0, 8, 8],
+                [0, 0, 0, 8]
+              ],
+            score: 20
+          },
+          {
+            board: [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 2]
+              ],
+            score: 0
+          },
+          {
+            board: [
+                [0, 2, 8, 2],
+                [8, 2, 8, 2],
+                [2, 8, 2, 8],
+                [8, 2, 8, 2]
+              ],
+            score: 0
+          },
         ];
 
         it('moves the board right', function() {
@@ -873,7 +923,10 @@ describe('GameService', function() {
 
         it('does not move the board right', function() {
           _.each(boards, function(board) {
-            expect(subject.moveBoard('right', board)).toEqual(board);
+            expect(subject.moveBoard('right', board)).toEqual({
+              board: board,
+              score: 0
+            });
           });
         });
       });

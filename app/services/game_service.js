@@ -85,14 +85,25 @@ var GameService = {
       if (memo.lastNumber == elem) {
         memo.array.shift();
         memo.array.unshift(elem * 2);
-        return { lastNumber: 0, array: memo.array };
+        return {
+          lastNumber: 0,
+          array: memo.array,
+          score: memo.score + (elem * 2)
+        };
       } else {
         memo.array.unshift(elem);
-        return { lastNumber: elem, array: memo.array };
+        return {
+          lastNumber: elem,
+          array: memo.array,
+          score: memo.score
+        };
       }
-    }, { lastNumber: 0, array: [] });
+    }, { lastNumber: 0, array: [], score: 0 });
 
-    return GameService.padWith(result.array, 0, 4);
+    return {
+      array: GameService.padWith(result.array, 0, 4),
+      score: result.score
+    };
   },
 
   canBoardMove: function(direction, board) {
@@ -121,6 +132,7 @@ var GameService = {
   moveBoard: function(direction, board) {
     var rotated;
     var unrotate;
+    var result;
 
     switch(direction) {
       case 'up':
@@ -143,7 +155,15 @@ var GameService = {
         throw Errors.badDirectionError(direction);
     }
 
-    return unrotate(_.map(rotated, GameService.shiftDown));
+    result = _.foldr(_.map(rotated, GameService.shiftDown), function(obj, res) {
+      obj.board.unshift(res.array);
+      return {
+        board: obj.board,
+        score: obj.score + res.score
+      };
+    }, { board: [], score: 0 });
+
+    return { board: unrotate(result.board), score: result.score };
   },
 
   isGameOver: function(board) {

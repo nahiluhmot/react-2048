@@ -40,11 +40,10 @@ gulp.task('spec', function() {
     .pipe(jasmine());
 });
 
-gulp.task('serve', ['build'], function() {
+gulp.task('serve', ['build', 'watch'], function() {
   var port = parseInt(process.env.PORT) || 3000;
   var serve = serveStatic('./build/', { index: ['index.html'] })
   var server = http.createServer(function(req, res){
-    console.log(req.url);
     var done = finalhandler(req, res)
     serve(req, res, done)
   })

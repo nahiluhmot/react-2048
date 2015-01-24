@@ -3,12 +3,87 @@
 }
 
 .tile {
-  display: inline;
+  display: inline-block;
+  vertical-align: middle;
   font-size: 40px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  position: relative;
+  padding-top: 20px;
+  background: #cdcdcd;
+  margin: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.tile-2 {
+  background: #1abc9c;
+}
+
+.tile-4 {
+  background: #2ecc71;
+}
+
+.tile-8 {
+  background: #3498db;
+}
+
+.tile-16 {
+  background: #9b59b6;
+}
+
+.tile-32 {
+  background: #f1c40f;
+}
+
+.tile-64 {
+  background: #e67e22;
+}
+
+.tile-128 {
+  background: #e74c3c;
+}
+
+.tile-256 {
+  background: #95a5a6;
+}
+
+.tile-512 {
+  background: #e67e22;
+}
+
+.tile-1024, .tile-2048, .tile-4096, .tile-8192, .tile-16384, .tile-32768 {
+  background: #000;
+  color: white;
+}
+
+.tile-1024, .tile-2048, .tile-4096, .tile-8192 {
+  padding-top: 25px;
+  font-size: 30px;
+}
+
+.tile-8192 {
+  padding-top: 25px;
+  font-size: 30px;
+}
+
+.tile-16384, .tile-32768 {
+  padding-top: 27.5px;
+  font-size: 25px;
+}
+
+.board {
+  background: #eee;
+  width: 400px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
 }
 
 .center {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
+  text-align: center;
 }
