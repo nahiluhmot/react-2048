@@ -1,4 +1,4 @@
-var GameService = rootRequire('services/game_service.js');
+var GameService = rootRequire('game_service.js');
 var _ = require('underscore');
 
 describe('GameService', function() {

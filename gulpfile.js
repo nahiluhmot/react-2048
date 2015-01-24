@@ -15,7 +15,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('js', function() {
-  return browserify({ entries: './app/main.jsx' })
+  return browserify({ entries: './app/app.js' })
     .transform('reactify')
     .bundle()
     .pipe(source('deps.min.js'))

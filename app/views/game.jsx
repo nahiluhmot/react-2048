@@ -3,10 +3,11 @@ var _ = require('underscore');
 
 var Score = require('./score.jsx');
 var Tile = require('./tile.jsx');
-var GameService = require('../services/game_service.js');
+var GameService = require('../game_service.js');
 
 /**
- * This component con
+ * This component contains the logic to draw the game and handle keyboard
+ * events.
  */
 var Game = React.createClass({
   getInitialState: function () {

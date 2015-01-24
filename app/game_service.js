@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var Errors = require('../errors.js');
+var Errors = require('./errors.js');
 
 var GameService = {
   reverse: function(list) {
